@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-default pull-left" (click)="onPrevious()" [disabled]="count <= 1">Previous</button>
+    <button class="btn btn-default pull-right" (click)="onNext()" [disabled]="films.length < 10">Next</button>
+    <form>
+      <div class="form-group" [ngStyle]="{'margin-bottom': '0'}">
+        <label for="title"></label>
+        <input class="form-control" placeholder="Search..." [formControl]="filmFormControl" type=text id="title" autocomplete="off" autofocus>
+      </div>
+    </form>
+    <div>
+      <ul class="list-group list-unstyled">
+        <li *ngIf="!isDone">
+          <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+          </div>
+          <p>Loading...</p>
+        </li>
+        <li *ngIf="isDone">
+          <omdb-film-films-item *ngFor="let film of films" [film]="film"></omdb-film-films-item>
+        </li>
+        <li class="pull-right">{{ searchResult }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
